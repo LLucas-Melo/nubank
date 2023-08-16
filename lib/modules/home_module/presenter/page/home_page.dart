@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nubank/core/widgets/action_list/action_list_widget.dart';
 
@@ -15,6 +14,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<ActionItem> myItems = [
+    ActionItem(
+        icon: Icons.card_giftcard_outlined, description: 'Ação de Favorito'),
+    ActionItem(icon: Icons.mail, description: 'Enviar E-mail'),
+    ActionItem(icon: Icons.mail, description: 'Enviar E-mail'),
+    ActionItem(icon: Icons.mail, description: 'Enviar E-mail'),
+    ActionItem(icon: Icons.mail, description: 'Enviar E-mail'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             CreditCardWidget(backgroundColor: Colors.deepPurple),
-            Expanded(child: ActionListWidget())
+            Expanded(
+                child: ActionListWidget(
+              items: myItems,
+            ))
           ],
         ),
       ),

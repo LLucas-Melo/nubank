@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 
+class ActionItem {
+  final IconData icon;
+  final String description;
+
+  ActionItem({required this.icon, required this.description});
+}
+
 class ActionListWidget extends StatefulWidget {
-  const ActionListWidget({super.key});
+  final List<ActionItem> items;
+
+  const ActionListWidget({super.key, required this.items});
 
   @override
   State<ActionListWidget> createState() => _ActionListWidgetState();
@@ -11,30 +20,50 @@ class _ActionListWidgetState extends State<ActionListWidget> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 5,
+      itemCount: widget.items.length,
       itemBuilder: (BuildContext context, int index) {
-        return ListTile(
-          leading: Icon(
-            Icons.star,
-            color: Colors.white.withOpacity(0.5),
-            size: 20,
+        final actionItem = widget.items[index];
+
+        return Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    border: Border(
+                  bottom: BorderSide(color: Colors.white.withOpacity(0.1)),
+                )),
+                child: ListTile(
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  leading: Icon(
+                    actionItem.icon,
+                    color: Colors.white.withOpacity(0.5),
+                    size: 20,
+                  ),
+                  title: Container(
+                    padding: EdgeInsets.only(left: 30),
+                    child: Text(
+                      '${actionItem.description}',
+                      style: TextStyle(
+                        color: Colors.white.withOpacity(0.8),
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_forward_ios,
+                    color: Colors.white.withOpacity(0.5),
+                    size: 12,
+                  ),
+                  onTap: () {
+                    // Ação a ser realizada quando o item for clicado
+                    print('Item $index foi clicado');
+                  },
+                ),
+              ),
+            ],
           ),
-          title: Text(
-            'Item $index',
-            style: TextStyle(
-              color: Colors.white.withOpacity(0.8),
-              fontSize: 12,
-            ),
-          ),
-          trailing: Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.white.withOpacity(0.5),
-            size: 12,
-          ),
-          onTap: () {
-            // Ação a ser realizada quando o item for clicado
-            print('Item $index foi clicado');
-          },
         );
       },
     );
