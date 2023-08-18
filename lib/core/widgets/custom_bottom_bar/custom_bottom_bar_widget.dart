@@ -17,10 +17,10 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildNavItem(Icons.home, 'Home', 0),
-          _buildNavItem(Icons.search, 'Search', 1),
-          _buildNavItem(Icons.favorite, 'Favorite', 2),
-          _buildNavItem(Icons.settings, 'Settings', 3),
+          _buildNavItem(Icons.home, 'Cartão', 0),
+          _buildNavItem(Icons.search, ' Conta', 1),
+          _buildNavItem(Icons.favorite, ' Atividade', 2),
+          _buildNavItem(Icons.settings, ' Perfil', 3),
         ],
       ),
     );

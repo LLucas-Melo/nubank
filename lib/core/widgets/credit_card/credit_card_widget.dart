@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 
 class CreditCardWidget extends StatefulWidget {
@@ -34,27 +36,55 @@ class _CreditCardWidgetState extends State<CreditCardWidget> {
   Widget _buildCredit() {
     return Padding(
       padding: const EdgeInsets.all(24.0),
+      // ignore: prefer_const_constructors
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              Icon(Icons.payment),
-              Text('Fatura'),
-              Spacer(),
-              Text('R\$'),
-              Text("1234,00")
+              Icon(
+                Icons.payment,
+                color: Colors.white,
+              ),
+              Text(
+                'Fatura',
+                style: TextStyle(color: Colors.white),
+              ),
+              const Spacer(),
+              Text(
+                'R\$',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                "1234,00",
+                style: TextStyle(color: Colors.white),
+              )
             ],
           ),
-          Text('Lucas Melo'),
+          Text(
+            'Lucas Melo',
+            style: TextStyle(color: Colors.white),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('****'),
-              Text('****'),
-              Text('****'),
-              Text('****'),
+              Text(
+                '****',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '****',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '****',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                '1595',
+                style: TextStyle(color: Colors.white),
+              ),
             ],
           ),
         ],

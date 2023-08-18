@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class ActionItem {
   final IconData icon;
   final String description;
+  final void Function() onPressed;
 
-  ActionItem({required this.icon, required this.description});
+  ActionItem(
+      {required this.icon, required this.description, required this.onPressed});
 }
 
 class ActionListWidget extends StatefulWidget {
@@ -56,10 +58,7 @@ class _ActionListWidgetState extends State<ActionListWidget> {
                     color: Colors.white.withOpacity(0.5),
                     size: 12,
                   ),
-                  onTap: () {
-                    // Ação a ser realizada quando o item for clicado
-                    print('Item $index foi clicado');
-                  },
+                  onTap: actionItem.onPressed,
                 ),
               ),
             ],
