@@ -10,30 +10,56 @@ class LimiteScreen extends StatefulWidget {
 }
 
 class _LimiteScreenState extends State<LimiteScreen> {
+  final ValueNotifier<double> _dragValue = ValueNotifier(0.0);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Stack(children: [
-        Column(
-          children: [
-            RxBuilder(
-              builder: (_) => Text(
-                limiteValue.value.toStringAsFixed(2),
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              RxBuilder(
+                builder: (_) => Text(
+                  limiteValue.value.toStringAsFixed(2),
+                ),
               ),
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  limiteValue.value++;
+              AnimatedBuilder(
+                animation: _dragValue,
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(0, _dragValue.value * 100),
+                    child: child,
+                  );
                 },
-                child: Text('Atualizado'))
-          ],
-        )
-      ]),
-    );
-  }
+                child: GestureDetector(
+                  onVerticalDragUpdate: (details) {
+                    double delta = details.primaryDelta! / 100;
+                    _dragValue.value += delta;
 
-  Widget _buidLimit() {
-    return Container();
+                    if (delta > 0) {
+                      limiteValue.value +=
+                          delta; // Incrementa quando arrasta para cima
+                    } else {
+                      limiteValue.value -=
+                          delta.abs(); // Decrementa quando arrasta para baixo
+                    }
+
+                    _dragValue.value = _dragValue.value.clamp(-1.0, 1.0);
+                  },
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.blue,
+                    child: Center(child: Text('ajustar')),
+                  ),
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
   }
 }
