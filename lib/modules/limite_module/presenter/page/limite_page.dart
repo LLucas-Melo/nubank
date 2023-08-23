@@ -10,53 +10,56 @@ class LimiteScreen extends StatefulWidget {
 }
 
 class _LimiteScreenState extends State<LimiteScreen> {
-  final ValueNotifier<double> _dragValue = ValueNotifier(0.0);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: Stack(
         children: [
-          Column(
-            children: [
-              RxBuilder(
-                builder: (_) => Text(
-                  limiteValue.value.toStringAsFixed(2),
-                ),
-              ),
-              AnimatedBuilder(
-                animation: _dragValue,
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(0, _dragValue.value * 100),
-                    child: child,
-                  );
-                },
-                child: GestureDetector(
-                  onVerticalDragUpdate: (details) {
-                    double delta = details.primaryDelta! / 100;
-                    _dragValue.value += delta;
-
-                    if (delta > 0) {
-                      limiteValue.value +=
-                          delta; // Incrementa quando arrasta para cima
-                    } else {
-                      limiteValue.value -=
-                          delta.abs(); // Decrementa quando arrasta para baixo
-                    }
-
-                    _dragValue.value = _dragValue.value.clamp(-1.0, 1.0);
-                  },
-                  child: Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.blue,
-                    child: Center(child: Text('ajustar')),
+          Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                RxBuilder(
+                  builder: (_) => Text(
+                    limiteValue.value.toStringAsFixed(2),
                   ),
                 ),
-              ),
-            ],
+                RxBuilder(
+                  builder: (_) => AnimatedBuilder(
+                    animation: dragValue,
+                    builder: (context, child) {
+                      return Transform.translate(
+                        offset: Offset(0, dragValue.value * 100),
+                        child: child,
+                      );
+                    },
+                    child: GestureDetector(
+                      onVerticalDragUpdate: (details) {
+                        double delta = details.primaryDelta! / 100;
+                        dragValue.value += delta;
+
+                        if (delta < 0 && limiteValue.value <= 900) {
+                          limiteValue.value += 100;
+                        } else if (limiteValue.value > 0) {
+                          limiteValue.value -= 100;
+                        } else {
+                          limiteValue.setValue(0);
+                        }
+
+                        dragValue.value = dragValue.value.clamp(-0.0, 3.0);
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 100,
+                        color: Colors.blue,
+                        child: Center(child: Text('teste')),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           )
         ],
       ),
