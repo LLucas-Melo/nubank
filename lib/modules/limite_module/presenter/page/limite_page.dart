@@ -2,6 +2,7 @@ import 'package:asp/asp.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:nubank/modules/limite_module/presenter/atom/limite_atom.dart';
+import 'package:nubank/modules/limite_module/presenter/page/widgets/limit_bar_widget.dart';
 
 class LimiteScreen extends StatefulWidget {
   const LimiteScreen({super.key});
@@ -89,44 +90,10 @@ class _LimiteScreenState extends State<LimiteScreen> {
               child: Container(
                 color: Colors.yellow,
               ),
-            )
+            ),
           ],
         ),
-        RxBuilder(
-          builder: (_) => AnimatedBuilder(
-            animation: limiteAton.dragValue,
-            builder: (context, child) {
-              return Transform.translate(
-                offset: Offset(0, limiteAton.dragValue.value * 100),
-                child: child,
-              );
-            },
-            child: GestureDetector(
-              onVerticalDragUpdate: (details) {
-                double delta = details.primaryDelta! / 100;
-                limiteAton.dragValue.value += delta;
-
-                if (delta < 0 && limiteAton.limitValue.value <= 1000) {
-                  limiteAton.limitValue.value += 50;
-                } else if (limiteAton.limitValue.value > 0) {
-                  limiteAton.limitValue.value -= 50;
-                } else {
-                  limiteAton.limitValue.setValue(0);
-                }
-
-                limiteAton.dragValue.value =
-                    limiteAton.dragValue.value.clamp(-2.0, 0.0);
-              },
-              child: Container(
-                margin: EdgeInsets.only(right: 25),
-                width: 100,
-                height: MediaQuery.sizeOf(context).height * 0.6,
-                color: Colors.orange,
-                child: Center(child: Text('teste')),
-              ),
-            ),
-          ),
-        )
+        LimitBarWidget()
       ],
     );
   }

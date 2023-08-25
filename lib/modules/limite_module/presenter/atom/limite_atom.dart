@@ -7,5 +7,9 @@ class LimitAtons {
 
   final refreshValue = Atom.action(); // funcao de apontamento
 
-  void dispose() {}
+  void dispose() {
+    limitValue.dispose();
+    dragValue.dispose();
+    refreshValue.dispose();
+  }
 }
