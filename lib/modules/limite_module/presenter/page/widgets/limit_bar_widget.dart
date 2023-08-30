@@ -56,15 +56,22 @@ class _LimitBarWidgetState extends State<LimitBarWidget> {
                     ),
                     Positioned(
                       bottom: (limiteAton.limitValue.value / 1000) * 400,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          limiteAton.limitValue.value.toStringAsFixed(2),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Text(
+                              'Limite Ajustado',
+                              style: TextStyle(color: Colors.white60),
+                            ),
                           ),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Text(
+                                ' R\$ ${limiteAton.limitValue.value.toStringAsFixed(2)}',
+                                style: TextStyle(color: Colors.white60)),
+                          ),
+                        ],
                       ),
                     ),
                   ],

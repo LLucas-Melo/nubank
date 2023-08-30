@@ -36,14 +36,17 @@ class _LimiteScreenState extends State<LimiteScreen> {
           children: [
             Expanded(
               flex: 2,
-              child: Container(
-                color: Colors.amber,
-              ),
+              child: Container(),
             ),
             Expanded(
               flex: 1,
-              child: Container(
-                color: Colors.blue,
+              child: RxBuilder(
+                builder: (context) => Column(
+                  children: [
+                    Text('Limite Disponiviel'),
+                    Text(limiteAton.limitValue.value.toString()),
+                  ],
+                ),
               ),
             ),
             Padding(
@@ -53,12 +56,16 @@ class _LimiteScreenState extends State<LimiteScreen> {
                 children: [
                   TextButton(
                     onPressed: () {},
-                    child: Text('Pedir mais limite'),
+                    child: Text(
+                      'Pedir mais limite',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   Container(
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            minimumSize: Size.fromHeight(56)),
+                            minimumSize: Size.fromHeight(56),
+                            backgroundColor: Colors.deepPurple.shade400),
                         onPressed: () {},
                         child: Text('Ajustar limite')),
                   ),
