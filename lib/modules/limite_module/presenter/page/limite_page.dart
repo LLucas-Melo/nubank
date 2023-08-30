@@ -35,7 +35,16 @@ class _LimiteScreenState extends State<LimiteScreen> {
         Column(
           children: [
             Expanded(
-              child: Container(),
+              flex: 2,
+              child: Container(
+                color: Colors.amber,
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                color: Colors.blue,
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

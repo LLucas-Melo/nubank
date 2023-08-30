@@ -21,7 +21,6 @@ class _LimitBarWidgetState extends State<LimitBarWidget> {
       child: Column(
         children: [
           Container(
-            color: Colors.amber,
             width: 500,
             height: 500,
             child: RxBuilder(
@@ -36,24 +35,35 @@ class _LimitBarWidgetState extends State<LimitBarWidget> {
                 child: Stack(
                   alignment: Alignment.centerLeft,
                   children: [
-                    RotatedBox(
-                      quarterTurns: 3,
-                      child: Slider(
-                        value: limiteAton.limitValue.value,
-                        max: 1000,
-                        divisions: 25,
-                        onChanged: (double value) {
-                          limiteAton.limitValue.setValue(value);
-                        },
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 20.0),
+                          child: RotatedBox(
+                            quarterTurns: 3,
+                            child: Slider(
+                              value: limiteAton.limitValue.value,
+                              max: 1000,
+                              divisions: 25,
+                              onChanged: (double value) {
+                                limiteAton.limitValue.setValue(value);
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     Positioned(
                       bottom: (limiteAton.limitValue.value / 1000) * 400,
-                      child: Text(
-                        limiteAton.limitValue.value.toStringAsFixed(2),
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Text(
+                          limiteAton.limitValue.value.toStringAsFixed(2),
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
