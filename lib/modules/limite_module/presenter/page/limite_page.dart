@@ -16,57 +16,15 @@ class _LimiteScreenState extends State<LimiteScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: Colors.deepPurple,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text(
+          'Ajuste o limite',
+        ),
+        backgroundColor: Colors.deepPurple,
+      ),
       body: _buildView(),
-      // body: Stack(
-      //   children: [
-      //     Center(
-      //       child: Row(
-      //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //         children: [
-      //           RxBuilder(
-      //             builder: (_) => Text(
-      //               limiteValue.value.toStringAsFixed(2),
-      //             ),
-      //           ),
-      //           RxBuilder(
-      //             builder: (_) => AnimatedBuilder(
-      //               animation: dragValue,
-      //               builder: (context, child) {
-      //                 return Transform.translate(
-      //                   offset: Offset(0, dragValue.value * 100),
-      //                   child: child,
-      //                 );
-      //               },
-      //               child: GestureDetector(
-      //                 onVerticalDragUpdate: (details) {
-      //                   double delta = details.primaryDelta! / 100;
-      //                   dragValue.value += delta;
-
-      //                   if (delta < 0 && limiteValue.value <= 1000) {
-      //                     limiteValue.value += 50;
-      //                   } else if (limiteValue.value > 0) {
-      //                     limiteValue.value -= 50;
-      //                   } else {
-      //                     limiteValue.setValue(0);
-      //                   }
-
-      //                   dragValue.value = dragValue.value.clamp(-2.0, 0.0);
-      //                 },
-      //                 child: Container(
-      //                   width: 100,
-      //                   height: 100,
-      //                   color: Colors.blue,
-      //                   child: Center(child: Text('teste')),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     )
-      //   ],
-      // ),
     );
   }
 
@@ -77,23 +35,30 @@ class _LimiteScreenState extends State<LimiteScreen> {
         Column(
           children: [
             Expanded(
-              child: Container(
-                color: Colors.red,
-              ),
+              child: Container(),
             ),
-            Expanded(
-                child: AnimatedContainer(
-              duration: Duration(milliseconds: 500),
-              color: Colors.blue,
-            )),
-            Expanded(
-              child: Container(
-                color: Colors.yellow,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextButton(
+                    onPressed: () {},
+                    child: Text('Pedir mais limite'),
+                  ),
+                  Container(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size.fromHeight(56)),
+                        onPressed: () {},
+                        child: Text('Ajustar limite')),
+                  ),
+                ],
               ),
             ),
           ],
         ),
-        LimitBarWidget()
+        LimitBarWidget(),
       ],
     );
   }

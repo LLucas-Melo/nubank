@@ -17,48 +17,37 @@ class _MyWidgetState extends State<LimitBarWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxHeight: 500),
-      color: Colors.green,
-      child: Column(
-        children: [
-          Expanded(
-            child: RxBuilder(
-              builder: (_) => AnimatedBuilder(
-                animation: limiteAton.dragValue,
-                builder: (context, child) {
-                  return Transform.translate(
-                    offset: Offset(0, limiteAton.dragValue.value * 100),
-                    child: child,
-                  );
-                },
-                child: GestureDetector(
-                  onVerticalDragUpdate: (details) {
-                    double delta = details.primaryDelta! / 100;
-                    limiteAton.dragValue.value += delta;
-
-                    if (delta < 0 && limiteAton.limitValue.value <= 1000) {
-                      limiteAton.limitValue.value += 50;
-                    } else if (limiteAton.limitValue.value > 0) {
-                      limiteAton.limitValue.value -= 50;
-                    } else {
-                      limiteAton.limitValue.setValue(0);
-                    }
-
-                    limiteAton.dragValue.value =
-                        limiteAton.dragValue.value.clamp(-2.0, 0.0);
-                  },
-                  child: Container(
-                    margin: EdgeInsets.only(right: 25),
-                    width: 100,
-                    color: Colors.orange,
-                    child: Center(child: Text('teste')),
+        constraints: const BoxConstraints(maxHeight: 500),
+        child: Column(
+          children: [
+            RotatedBox(
+              quarterTurns: 3,
+              child: SizedBox(
+                width: 500,
+                height: 200,
+                child: RxBuilder(
+                  builder: (_) => SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      trackHeight: 50,
+                      inactiveTrackColor: Colors.deepPurple,
+                      activeTrackColor: Colors.green,
+                      showValueIndicator: ShowValueIndicator.never,
+                      thumbColor: Colors.transparent,
+                    ),
+                    child: Slider(
+                      value: limiteAton.limitValue.value,
+                      max: 1000,
+                      divisions: 10,
+                      label: limiteAton.limitValue.value.toString(),
+                      onChanged: (double value) {
+                        limiteAton.limitValue.setValue(value);
+                      },
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ));
   }
 }
