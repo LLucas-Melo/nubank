@@ -20,44 +20,44 @@ class _LimitBarWidgetState extends State<LimitBarWidget> {
       constraints: const BoxConstraints(maxHeight: 500),
       child: Column(
         children: [
-          RotatedBox(
-            quarterTurns: 3,
-            child: SizedBox(
-              width: 500,
-              height: 100,
-              child: RxBuilder(
-                builder: (_) => SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                    trackHeight: 50,
-                    inactiveTrackColor: Colors.deepPurple,
-                    activeTrackColor: Colors.green,
-                    showValueIndicator: ShowValueIndicator.never,
-                    thumbColor: Colors.transparent,
-                  ),
-                  child: Stack(
-                    alignment: Alignment.centerLeft,
-                    children: [
-                      Slider(
+          Container(
+            color: Colors.amber,
+            width: 500,
+            height: 500,
+            child: RxBuilder(
+              builder: (_) => SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  trackHeight: 50,
+                  inactiveTrackColor: Colors.deepPurple,
+                  activeTrackColor: Colors.green,
+                  showValueIndicator: ShowValueIndicator.never,
+                  thumbColor: Colors.transparent,
+                ),
+                child: Stack(
+                  alignment: Alignment.centerLeft,
+                  children: [
+                    RotatedBox(
+                      quarterTurns: 3,
+                      child: Slider(
                         value: limiteAton.limitValue.value,
                         max: 1000,
-                        divisions: 10,
+                        divisions: 25,
                         onChanged: (double value) {
                           limiteAton.limitValue.setValue(value);
                         },
                       ),
-                      Positioned(
-                        left: (limiteAton.limitValue.value / 1000) *
-                            500, // Adjust this calculation as needed
-                        child: Text(
-                          limiteAton.limitValue.value.toStringAsFixed(2),
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                          ),
+                    ),
+                    Positioned(
+                      bottom: (limiteAton.limitValue.value / 1000) * 400,
+                      child: Text(
+                        limiteAton.limitValue.value.toStringAsFixed(2),
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
