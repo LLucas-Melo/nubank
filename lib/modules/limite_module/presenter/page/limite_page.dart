@@ -43,8 +43,12 @@ class _LimiteScreenState extends State<LimiteScreen> {
               child: RxBuilder(
                 builder: (context) => Column(
                   children: [
-                    Text('Limite Disponiviel'),
-                    Text(limiteAton.limitValue.value.toString()),
+                    Text(
+                      '.Limite Disponiviel',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                    Text(limiteAton.limitValue.value.toString(),
+                        style: TextStyle(color: Colors.green)),
                   ],
                 ),
               ),

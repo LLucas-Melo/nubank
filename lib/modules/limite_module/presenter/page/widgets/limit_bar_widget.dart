@@ -27,7 +27,7 @@ class _LimitBarWidgetState extends State<LimitBarWidget> {
               builder: (_) => SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   trackHeight: 50,
-                  inactiveTrackColor: Colors.deepPurple,
+                  inactiveTrackColor: Colors.purple.withOpacity(0.15),
                   activeTrackColor: Colors.green,
                   showValueIndicator: ShowValueIndicator.never,
                   thumbColor: Colors.transparent,

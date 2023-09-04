@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'atom/indexNavegation_atom.dart';
 
 class CustomBottomBarWidget extends StatefulWidget {
   const CustomBottomBarWidget({Key? key}) : super(key: key);
@@ -8,8 +9,6 @@ class CustomBottomBarWidget extends StatefulWidget {
 }
 
 class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
-  int _selectedIndex = 0; // Índice do ícone selecionado
-
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -18,7 +17,11 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           _buildNavItem(Icons.home, 'Cartão', 0),
-          _buildNavItem(Icons.search, ' Conta', 1),
+          _buildNavItem(
+            Icons.search,
+            ' Conta',
+            1,
+          ),
           _buildNavItem(Icons.favorite, ' Atividade', 2),
           _buildNavItem(Icons.settings, ' Perfil', 3),
         ],
@@ -27,13 +30,12 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
   }
 
   Widget _buildNavItem(IconData icon, String label, int index) {
-    bool isSelected = index == _selectedIndex;
+    bool isSelected = index == indexNavegation.value;
 
     return InkWell(
       onTap: () {
-        setState(() {
-          _selectedIndex = index;
-        });
+        indexNavegation.value = index;
+        print('clicou $index');
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -54,7 +56,6 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
               ),
             ],
           ),
-// Espaço entre ícone e rótulo
         ],
       ),
     );
