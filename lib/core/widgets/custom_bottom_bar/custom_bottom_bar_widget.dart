@@ -18,18 +18,16 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildNavItem(Icons.home, 'Cartão', 0, () {}),
-          _buildNavItem(Icons.search, ' Conta', 1, () {}),
-          _buildNavItem(Icons.favorite, ' Atividade', 2, () {
-            Modular.to.navigate('/limite');
-          }),
-          _buildNavItem(Icons.settings, ' Perfil', 3, () {}),
+          _buildNavItem(Icons.home, 'Cartão', 0, '/home'),
+          _buildNavItem(Icons.search, ' Conta', 1, '/'),
+          _buildNavItem(Icons.favorite, ' Atividade', 2, '/activity'),
+          _buildNavItem(Icons.settings, ' Perfil', 3, '/homePage'),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(IconData icon, String label, int index, Function onTap) {
+  Widget _buildNavItem(IconData icon, String label, int index, String route) {
     bool isSelected = index == indexNavegation.value;
 
     return RxBuilder(
@@ -37,6 +35,7 @@ class _CustomBottomBarWidgetState extends State<CustomBottomBarWidget> {
         onTap: () {
           if (!isSelected) {
             indexNavegation.setValue(index);
+            Modular.to.pushNamed(route);
             setState(() {});
 
             print('clicou $index');

@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:nubank/modules/activity_module/presenter/activity_modile.dart';
 import 'package:nubank/modules/home_module/home_module.dart';
 
 import 'modules/limite_module/limite_module.dart';
@@ -18,6 +19,10 @@ class AppModule extends Module {
         ModuleRoute(
           '/limite',
           module: LimiteModule(),
+        ),
+        ModuleRoute(
+          '/activity',
+          module: Ativity(),
         ),
       ];
 }
