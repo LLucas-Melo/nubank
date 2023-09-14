@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 120, 17, 138),
+      backgroundColor: Colors.deepPurple,
       body: Center(
         child: ColorFiltered(
           colorFilter: ColorFilter.mode(
