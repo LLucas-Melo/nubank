@@ -1,7 +1,8 @@
 import 'package:asp/asp.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+
 import 'package:nubank/core/widgets/custom_bottom_bar/custom_bottom_bar_widget.dart';
+import 'package:nubank/core/widgets/invoice_list/invoice_list_widget.dart';
 import 'package:nubank/modules/activity_module/presenter/atom/activity_atom.dart';
 
 class ActivityScreem extends StatefulWidget {
@@ -12,6 +13,44 @@ class ActivityScreem extends StatefulWidget {
 }
 
 class _ActivityScreemState extends State<ActivityScreem> {
+  final List<InvoiceItem> myItems = [
+    InvoiceItem(
+        icon: Icons.credit_card,
+        description: 'Netflix',
+        value: 'R\$ 23,90',
+        date: 'Ontem',
+        payment: 'Compra no credito'),
+    InvoiceItem(
+        icon: Icons.credit_card,
+        description: 'Amazon',
+        value: 'R\$ 14,90',
+        date: '16 de Setembro',
+        payment: 'Compra no credito'),
+    InvoiceItem(
+        icon: Icons.credit_card,
+        description: 'Steam',
+        value: 'R\$ 3500,00',
+        date: '21 de Setembro',
+        payment: 'Compra no Debito'),
+    InvoiceItem(
+        icon: Icons.money,
+        description: 'Deposito em conta',
+        value: 'R\$ 6500,00',
+        date: '21 de Setembro',
+        payment: 'Credito em Conta'),
+    InvoiceItem(
+        icon: Icons.credit_card,
+        description: 'Plano Claro',
+        value: 'R\$ 27,29',
+        date: '21 de Setembro',
+        payment: 'Compra no Credito'),
+    InvoiceItem(
+        icon: Icons.credit_card,
+        description: 'Spotyfi',
+        value: 'R\$ 36,00',
+        date: '21 de Setembro',
+        payment: 'Compra no Credito'),
+  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -76,6 +115,11 @@ class _ActivityScreemState extends State<ActivityScreem> {
                       child: Center(child: Text('Conta')),
                     ),
                   ],
+                ),
+              ),
+              Expanded(
+                child: InvoiceListWidget(
+                  items: myItems,
                 ),
               )
             ],
