@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:nubank/modules/limite_module/presenter/atom/limite_atom.dart';
-import 'package:nubank/modules/limite_module/presenter/page/limite_page.dart';
-import 'package:nubank/modules/limite_module/presenter/reducer/limite_reducer.dart';
+import 'package:nubank/modules/limite_module/presenter/page/limit_page.dart';
+import 'package:nubank/modules/limite_module/presenter/reducer/limit_reducer.dart';
 
 class LimiteModule extends Module {
   @override

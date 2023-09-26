@@ -19,13 +19,15 @@ class _HomeScreenState extends State<HomeScreen> {
     ActionItem(
       icon: Icons.credit_card,
       description: 'Resumo da fatura',
-      onPressed: () {},
+      onPressed: () {
+        Modular.to.pushNamed('/summary');
+      },
     ),
     ActionItem(
         icon: Icons.mail,
         description: 'Limite disponivel',
         onPressed: () {
-          Modular.to.pushNamed('/limite');
+          Modular.to.pushNamed('/limit');
         }),
     ActionItem(
       icon: Icons.mail,
