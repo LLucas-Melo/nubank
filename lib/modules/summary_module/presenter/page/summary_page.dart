@@ -32,11 +32,53 @@ class _SummaryScreemState extends State<SummaryScreem> {
                   height: 30,
                 ),
               ),
-              SizedBox(height: 150),
+              SizedBox(
+                child: Card(
+                  color: Colors.deepPurple,
+                  elevation: 10,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: _BuildInvoice(),
+                  ),
+                ),
+              ),
+              Teste(),
             ],
           ),
         ),
       ),
     );
   }
+}
+
+Widget _BuildInvoice() {
+  return Padding(
+    padding: const EdgeInsets.all(24.0),
+    child: Column(children: [
+      Row(
+        children: [
+          Icon(
+            Icons.payment,
+            color: Colors.white,
+          ),
+          Text(
+            'Fatura',
+            style: TextStyle(color: Colors.white),
+          ),
+          const Spacer(),
+          Text(
+            'R\$',
+            style: TextStyle(color: Colors.white, fontSize: 10),
+          ),
+          Text(
+            "1234,00",
+            style: TextStyle(color: Colors.white),
+          )
+        ],
+      )
+    ]),
+  );
 }
