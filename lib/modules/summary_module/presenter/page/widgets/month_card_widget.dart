@@ -1,7 +1,10 @@
-import 'package:flutter/cupertino.dart';
+import 'package:asp/asp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../core/widgets/invoice_list/invoice_list_widget.dart';
+import '../../atom/summary_atom.dart';
+import 'month_buttom.widget.dart';
 
 class Teste extends StatefulWidget {
   const Teste({super.key});
@@ -11,24 +14,64 @@ class Teste extends StatefulWidget {
 }
 
 class _TesteState extends State<Teste> {
-  final controller = PageController(
-    initialPage: 1,
-  );
+  final summaryAtom = Modular.get<SummaryAtom>();
   @override
   Widget build(BuildContext context) {
-//page view with 3 options
+    const List<String> months = [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembo',
+      'Outubro',
+      'Novembro',
+      'Dezembro'
+    ];
+
     return Column(
       children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: RxBuilder(builder: (_) {
+            return SizedBox(
+              height: 50,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: months.length,
+                itemBuilder: (context, index) {
+                  final month = months[index];
+                  return RxBuilder(
+                    builder: (_) => SizedBox(
+                        width: 100,
+                        child: (months[index] == index &&
+                                summaryAtom.isSelected.value == true)
+                            ? DualButton(
+                                text: month,
+                                isActive: true,
+                              )
+                            : DualButton(
+                                text: month,
+                              )),
+                  );
+                },
+              ),
+            );
+          }),
+        ),
         SizedBox(
           height: 500,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: PageView(
-              children: [
-                _buildMonth(),
-                _buildMonth(),
-                _buildMonth(),
-              ],
+            child: PageView.builder(
+              controller: summaryAtom.controller.value,
+              itemCount: months.length,
+              itemBuilder: (context, index) {
+                return _buildMonth();
+              },
             ),
           ),
         ),
